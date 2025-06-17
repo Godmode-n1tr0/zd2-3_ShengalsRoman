@@ -47,25 +47,29 @@ namespace zd2_3_Shengals_Roman
             this.label4 = new System.Windows.Forms.Label();
             this.BtnSellMultiple = new System.Windows.Forms.Button();
             this.numericUpDownQuantity = new System.Windows.Forms.NumericUpDown();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblCurrentSong = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnClearPlaylist = new System.Windows.Forms.Button();
+            this.btnRemoveSong = new System.Windows.Forms.Button();
+            this.btnGoToStart = new System.Windows.Forms.Button();
+            this.btnGoToIndex = new System.Windows.Forms.Button();
+            this.numericUpDownIndex = new System.Windows.Forms.NumericUpDown();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnAddSong = new System.Windows.Forms.Button();
+            this.txtFilename = new System.Windows.Forms.TextBox();
+            this.txtTitle = new System.Windows.Forms.TextBox();
+            this.txtAuthor = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.playlistListBox = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // productsListBox
@@ -234,163 +238,199 @@ namespace zd2_3_Shengals_Roman
             0,
             0});
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(350, 190);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Продать 1 шт";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(350, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(95, 13);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Название товара";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(350, 160);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Добавить товар";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(350, 60);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Цена (руб.)";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(350, 120);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(150, 20);
-            this.textBox3.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(350, 100);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Количество";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(350, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(150, 20);
-            this.textBox2.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(20, 230);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(129, 17);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Прибыль: 0 руб.";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(350, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(20, 20);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox1.Size = new System.Drawing.Size(300, 199);
-            this.listBox1.TabIndex = 0;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(350, 236);
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(150, 20);
-            this.numericUpDown1.TabIndex = 10;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(350, 266);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Продать выбранные";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(350, 216);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Количество для продажи";
-            // 
             // panel3
             // 
             this.panel3.ContextMenuStrip = this.contextMenuStrip1;
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.numericUpDown1);
-            this.panel3.Controls.Add(this.listBox1);
-            this.panel3.Controls.Add(this.textBox1);
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.textBox2);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.textBox3);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Location = new System.Drawing.Point(543, 12);
+            this.panel3.Controls.Add(this.lblCurrentSong);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.btnClearPlaylist);
+            this.panel3.Controls.Add(this.btnRemoveSong);
+            this.panel3.Controls.Add(this.btnGoToStart);
+            this.panel3.Controls.Add(this.btnGoToIndex);
+            this.panel3.Controls.Add(this.numericUpDownIndex);
+            this.panel3.Controls.Add(this.btnPrevious);
+            this.panel3.Controls.Add(this.btnNext);
+            this.panel3.Controls.Add(this.btnAddSong);
+            this.panel3.Controls.Add(this.txtFilename);
+            this.panel3.Controls.Add(this.txtTitle);
+            this.panel3.Controls.Add(this.txtAuthor);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.playlistListBox);
+            this.panel3.Location = new System.Drawing.Point(561, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(525, 442);
             this.panel3.TabIndex = 11;
+            // 
+            // lblCurrentSong
+            // 
+            this.lblCurrentSong.AutoSize = true;
+            this.lblCurrentSong.Location = new System.Drawing.Point(162, 4);
+            this.lblCurrentSong.Name = "lblCurrentSong";
+            this.lblCurrentSong.Size = new System.Drawing.Size(19, 13);
+            this.lblCurrentSong.TabIndex = 24;
+            this.lblCurrentSong.Text = "....";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(17, 4);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(139, 13);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "Текущая композиция:";
+            // 
+            // btnClearPlaylist
+            // 
+            this.btnClearPlaylist.Location = new System.Drawing.Point(350, 354);
+            this.btnClearPlaylist.Name = "btnClearPlaylist";
+            this.btnClearPlaylist.Size = new System.Drawing.Size(150, 23);
+            this.btnClearPlaylist.TabIndex = 22;
+            this.btnClearPlaylist.Text = "Очистить плейлист";
+            this.btnClearPlaylist.UseVisualStyleBackColor = true;
+            this.btnClearPlaylist.Click += new System.EventHandler(this.btnClearPlaylist_Click);
+            // 
+            // btnRemoveSong
+            // 
+            this.btnRemoveSong.Location = new System.Drawing.Point(350, 325);
+            this.btnRemoveSong.Name = "btnRemoveSong";
+            this.btnRemoveSong.Size = new System.Drawing.Size(150, 23);
+            this.btnRemoveSong.TabIndex = 21;
+            this.btnRemoveSong.Text = "Удалить выбранную";
+            this.btnRemoveSong.UseVisualStyleBackColor = true;
+            this.btnRemoveSong.Click += new System.EventHandler(this.btnRemoveSong_Click);
+            // 
+            // btnGoToStart
+            // 
+            this.btnGoToStart.Location = new System.Drawing.Point(350, 296);
+            this.btnGoToStart.Name = "btnGoToStart";
+            this.btnGoToStart.Size = new System.Drawing.Size(150, 23);
+            this.btnGoToStart.TabIndex = 20;
+            this.btnGoToStart.Text = "В начало";
+            this.btnGoToStart.UseVisualStyleBackColor = true;
+            this.btnGoToStart.Click += new System.EventHandler(this.btnGoToStart_Click);
+            // 
+            // btnGoToIndex
+            // 
+            this.btnGoToIndex.Location = new System.Drawing.Point(350, 267);
+            this.btnGoToIndex.Name = "btnGoToIndex";
+            this.btnGoToIndex.Size = new System.Drawing.Size(150, 23);
+            this.btnGoToIndex.TabIndex = 19;
+            this.btnGoToIndex.Text = "Перейти по индексу";
+            this.btnGoToIndex.UseVisualStyleBackColor = true;
+            this.btnGoToIndex.Click += new System.EventHandler(this.btnGoToIndex_Click);
+            // 
+            // numericUpDownIndex
+            // 
+            this.numericUpDownIndex.Location = new System.Drawing.Point(350, 240);
+            this.numericUpDownIndex.Name = "numericUpDownIndex";
+            this.numericUpDownIndex.Size = new System.Drawing.Size(150, 20);
+            this.numericUpDownIndex.TabIndex = 18;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Location = new System.Drawing.Point(350, 211);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(150, 23);
+            this.btnPrevious.TabIndex = 17;
+            this.btnPrevious.Text = "Предыдущая";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(350, 180);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(150, 23);
+            this.btnNext.TabIndex = 16;
+            this.btnNext.Text = "Следующая";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnAddSong
+            // 
+            this.btnAddSong.Location = new System.Drawing.Point(350, 146);
+            this.btnAddSong.Name = "btnAddSong";
+            this.btnAddSong.Size = new System.Drawing.Size(150, 23);
+            this.btnAddSong.TabIndex = 15;
+            this.btnAddSong.Text = "Добавить песню";
+            this.btnAddSong.UseVisualStyleBackColor = true;
+            this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
+            // 
+            // txtFilename
+            // 
+            this.txtFilename.Location = new System.Drawing.Point(350, 120);
+            this.txtFilename.Name = "txtFilename";
+            this.txtFilename.Size = new System.Drawing.Size(150, 20);
+            this.txtFilename.TabIndex = 14;
+            // 
+            // txtTitle
+            // 
+            this.txtTitle.Location = new System.Drawing.Point(350, 77);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(150, 20);
+            this.txtTitle.TabIndex = 13;
+            // 
+            // txtAuthor
+            // 
+            this.txtAuthor.Location = new System.Drawing.Point(350, 38);
+            this.txtAuthor.Name = "txtAuthor";
+            this.txtAuthor.Size = new System.Drawing.Size(150, 20);
+            this.txtAuthor.TabIndex = 12;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(350, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Название:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(350, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 13);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Автор:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(351, 104);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(39, 13);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Файл:";
+            // 
+            // playlistListBox
+            // 
+            this.playlistListBox.FormattingEnabled = true;
+            this.playlistListBox.Location = new System.Drawing.Point(20, 20);
+            this.playlistListBox.Name = "playlistListBox";
+            this.playlistListBox.Size = new System.Drawing.Size(300, 394);
+            this.playlistListBox.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 466);
+            this.ClientSize = new System.Drawing.Size(1142, 465);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
-            this.Text = "Управление магазином";
+            this.Text = "Управление магазином и плейлист";
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIndex)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -414,20 +454,24 @@ namespace zd2_3_Shengals_Roman
         private System.Windows.Forms.NumericUpDown numericUpDownQuantity;
         private System.Windows.Forms.Button BtnSellMultiple;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ListBox playlistListBox;
+        private System.Windows.Forms.TextBox txtFilename;
+        private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.TextBox txtAuthor;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnAddSong;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.NumericUpDown numericUpDownIndex;
+        private System.Windows.Forms.Button btnGoToIndex;
+        private System.Windows.Forms.Button btnGoToStart;
+        private System.Windows.Forms.Button btnRemoveSong;
+        private System.Windows.Forms.Button btnClearPlaylist;
+        private System.Windows.Forms.Label lblCurrentSong;
+        private System.Windows.Forms.Label label13;
     }
 }
 

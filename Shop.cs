@@ -85,8 +85,7 @@ namespace zd2_3_Shengals_Roman
         // Поиск товара по имени
         public Product FindByName(string name)
         {
-            return products.Keys.FirstOrDefault(p =>
-                p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return products.Keys.FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         // Получение всех товаров

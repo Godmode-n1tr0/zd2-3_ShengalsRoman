@@ -1,0 +1,12 @@
+# Плейлист: Популярные хиты
+Artist1 - Song1 | pop | 2023 | path/to/song1.mp3
+Artist2 - Song2 | rock | 2022 | path/to/song2.mp3
+Artist3 - Song3 | electronic | 2021 | path/to/song3.mp3
+
+# Плейлист: Ретро
+Artist4 - Classic1 | disco | 1980 | path/to/classic1.mp3
+Artist5 - Classic2 | pop | 1995 | path/to/classic2.mp3
+
+# Плейлист: Для работы
+Artist6 - Instrumental1 | instrumental | 2020 | path/to/instr1.mp3
+Artist7 - Instrumental2 | classical | 2018 | path/to/instr2.mp3

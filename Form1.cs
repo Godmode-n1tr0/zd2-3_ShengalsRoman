@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,15 +14,17 @@ namespace zd2_3_Shengals_Roman
     public partial class Form1 : Form
     {
         private Shop shop = new Shop();
+        private Playlist playlist = new Playlist();
 
         public Form1()
         {
             InitializeComponent();
             InitializeShop();
-
             panel1.Visible = true;
             panel3.Visible = false;
+            LoadPlaylistsFromFile("playlist.txt");
             UpdateProductsList();
+            UpdatePlaylistDisplay();
         }
 
         private void InitializeShop()
@@ -60,6 +63,7 @@ namespace zd2_3_Shengals_Roman
         {
             panel3.Visible = true;
             panel1.Visible = false;
+            UpdatePlaylistDisplay();
         }
         // Обработчик кнопки "Продать выбранные"
         private void BtnSellMultiple_Click(object sender, EventArgs e)
@@ -151,6 +155,134 @@ namespace zd2_3_Shengals_Roman
             {
                 MessageBox.Show("Не удалось продать товар. Проверьте наличие.");
             }
+        }
+
+
+
+
+        //Загрузка файла
+        private void LoadPlaylistsFromFile(string filePath)
+        {
+            try
+            {
+                string currentPlaylist = "";
+                foreach (string line in File.ReadAllLines(filePath))
+                {
+                    if (line.StartsWith("#"))
+                    {
+                        currentPlaylist = line.Substring(2);
+                        continue;
+                    }
+
+                    if (!string.IsNullOrEmpty(line) && !string.IsNullOrEmpty(currentPlaylist))
+                    {
+                        string[] parts = line.Split('|');
+                        if (parts.Length >= 4)
+                        {
+                            string[] artistTitle = parts[0].Split('-');
+                            if (artistTitle.Length == 2)
+                            {
+                                playlist.AddSong(
+                                    artistTitle[0].Trim(),
+                                    artistTitle[1].Trim(),
+                                    parts[3].Trim());
+                            }
+                        }
+                    }
+                }
+                UpdatePlaylistDisplay();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки плейлистов: {ex.Message}");
+            }
+        }
+        // Обновление плэйлиста
+        private void UpdatePlaylistDisplay()
+        {
+            playlistListBox.Items.Clear();
+            foreach (var song in playlist.GetAllSongs())
+            {
+                playlistListBox.Items.Add(song);
+            }
+
+            try
+            {
+                lblCurrentSong.Text = playlist.CurrentSong().ToString();
+            }
+            catch (IndexOutOfRangeException)
+            {
+                lblCurrentSong.Text = "Плейлист пуст";
+            }
+        }
+
+        // Добавление песни
+        private void btnAddSong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                playlist.AddSong(txtAuthor.Text, txtTitle.Text, txtFilename.Text);
+                UpdatePlaylistDisplay();
+                txtAuthor.Clear();
+                txtTitle.Clear();
+                txtFilename.Clear();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+        }
+
+        // Переход к следующей песне
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            playlist.Next();
+            UpdatePlaylistDisplay();
+        }
+
+        // Переход к предыдущей песне
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            playlist.Previous();
+            UpdatePlaylistDisplay();
+        }
+
+        // Переход по индексу
+        private void btnGoToIndex_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                playlist.GoToIndex((int)numericUpDownIndex.Value);
+                UpdatePlaylistDisplay();
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+        }
+
+        // Переход к началу плейлиста
+        private void btnGoToStart_Click(object sender, EventArgs e)
+        {
+            playlist.GoToStart();
+            UpdatePlaylistDisplay();
+        }
+
+        // Удаление выбранной песни
+        private void btnRemoveSong_Click(object sender, EventArgs e)
+        {
+            if (playlistListBox.SelectedIndex >= 0)
+            {
+                playlist.RemoveSong(playlistListBox.SelectedIndex);
+                UpdatePlaylistDisplay();
+            }
+        }
+
+        // Очистка плейлиста
+        private void btnClearPlaylist_Click(object sender, EventArgs e)
+        {
+            playlist.Clear();
+            UpdatePlaylistDisplay();
         }
 
     }
