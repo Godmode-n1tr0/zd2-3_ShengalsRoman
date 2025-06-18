@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,9 @@ namespace zd2_3_Shengals_Roman
 {
     public struct Song
     {
-        public string Author;
-        public string Title;
-        public string Filename;
+        public string Author;  // Исполнитель песни
+        public string Title;   // Название песни
+        public string Filename; // Путь к файлу
 
         public override string ToString()
         {
@@ -20,98 +21,116 @@ namespace zd2_3_Shengals_Roman
 
     public class Playlist
     {
-        private List<Song> list;
-        private int currentIndex;
+        private List<Song> list = new List<Song>();  // Список песен
+        private int currentIndex;                    // Текущий индекс
+        public string CurrentFilePath { get; private set; } // Текущий файл плейлиста
 
-        // Инициализация плейлиста
-        public Playlist()
-        {
-            list = new List<Song>();
-            currentIndex = 0;
-        }
-
-        // Получить текущую песню
+        // Получение текущей песни
         public Song CurrentSong()
         {
             if (list.Count > 0)
                 return list[currentIndex];
-            else
-                throw new IndexOutOfRangeException("Невозможно получить текущую аудиозапись для пустого плейлиста!");
+            throw new IndexOutOfRangeException("Плейлист пуст");
         }
 
-        // Добавить песню (версия 1)
-        public void AddSong(Song song)
-        {
-            list.Add(song);
-        }
-
-        // Добавить песню (версия 2)
+        // Добавление новой песни
         public void AddSong(string author, string title, string filename)
         {
+            if (string.IsNullOrWhiteSpace(author) || string.IsNullOrWhiteSpace(title))
+                throw new ArgumentException("Автор и название песни обязательны");
+
             list.Add(new Song { Author = author, Title = title, Filename = filename });
         }
 
-        // Следующая песня
+        // Переход к следующей песне
         public void Next()
         {
             if (list.Count == 0) return;
             currentIndex = (currentIndex + 1) % list.Count;
         }
 
-        // Предыдущая песня
+        // Переход к предыдущей песне
         public void Previous()
         {
             if (list.Count == 0) return;
             currentIndex = (currentIndex - 1 + list.Count) % list.Count;
         }
 
-        // Перейти к песне по индексу
+        // Переход к песне по индексу
         public void GoToIndex(int index)
         {
             if (index >= 0 && index < list.Count)
                 currentIndex = index;
+            else
+                throw new IndexOutOfRangeException("Недопустимый индекс");
         }
 
-        // Перейти к началу
-        public void GoToStart()
-        {
-            currentIndex = 0;
-        }
-
-        // Удалить песню по индексу
+        // Удаление песни по индексу
         public void RemoveSong(int index)
         {
-            if (index >= 0 && index < list.Count)
-            {
-                list.RemoveAt(index);
-                if (currentIndex >= list.Count && list.Count > 0)
-                    currentIndex = list.Count - 1;
-            }
+            if (index < 0 || index >= list.Count)
+                throw new IndexOutOfRangeException("Недопустимый индекс");
+
+            list.RemoveAt(index);
+            if (currentIndex >= list.Count && list.Count > 0)
+                currentIndex = list.Count - 1;
         }
 
-        // Удалить песню по значению
-        public void RemoveSong(Song song)
-        {
-            int index = list.FindIndex(s => s.Author == song.Author && s.Title == song.Title && s.Filename == song.Filename);
-            if (index >= 0)
-            {
-                list.RemoveAt(index);
-                if (currentIndex >= list.Count && list.Count > 0)
-                    currentIndex = list.Count - 1;
-            }
-        }
-
-        // Очистить плейлист
+        // Очистка плейлиста
         public void Clear()
         {
             list.Clear();
             currentIndex = 0;
         }
 
-        // Получить все песни
+        // Получение всех песен
         public List<Song> GetAllSongs()
         {
             return new List<Song>(list);
+        }
+
+        // Сохранение плейлиста в файл
+        public void SaveToFile(string filePath)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                foreach (Song song in list)
+                {
+                    writer.WriteLine($"{song.Author}|{song.Title}|{song.Filename}");
+                }
+            }
+            CurrentFilePath = filePath;
+        }
+
+        // Загрузка плейлиста из файла
+        public void LoadFromFile(string filePath)
+        {
+            list.Clear();
+            currentIndex = 0;
+            CurrentFilePath = filePath;
+
+            foreach (string line in File.ReadAllLines(filePath))
+            {
+                string[] parts = line.Split('|');
+                if (parts.Length == 3)
+                {
+                    list.Add(new Song
+                    {
+                        Author = parts[0].Trim(),
+                        Title = parts[1].Trim(),
+                        Filename = parts[2].Trim()
+                    });
+                }
+            }
+        }
+
+        // Сохранение изменений в текущий файл
+        public void SaveChanges()
+        {
+            if (string.IsNullOrEmpty(CurrentFilePath))
+                throw new InvalidOperationException("Файл плейлиста не указан");
+
+            SaveToFile(CurrentFilePath);
         }
     }
 }

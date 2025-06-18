@@ -1,4 +1,8 @@
 ﻿
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace zd2_3_Shengals_Roman
 {
     partial class Form1
@@ -52,7 +56,6 @@ namespace zd2_3_Shengals_Roman
             this.label13 = new System.Windows.Forms.Label();
             this.btnClearPlaylist = new System.Windows.Forms.Button();
             this.btnRemoveSong = new System.Windows.Forms.Button();
-            this.btnGoToStart = new System.Windows.Forms.Button();
             this.btnGoToIndex = new System.Windows.Forms.Button();
             this.numericUpDownIndex = new System.Windows.Forms.NumericUpDown();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -65,6 +68,8 @@ namespace zd2_3_Shengals_Roman
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.playlistListBox = new System.Windows.Forms.ListBox();
+            this.btnSavePlaylist = new System.Windows.Forms.Button();
+            this.btnLoadPlaylist = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
@@ -185,6 +190,7 @@ namespace zd2_3_Shengals_Roman
             // 
             this.panel1.ContextMenuStrip = this.contextMenuStrip1;
             this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.BtnSellMultiple);
             this.panel1.Controls.Add(this.numericUpDownQuantity);
             this.panel1.Controls.Add(this.productsListBox);
@@ -245,7 +251,6 @@ namespace zd2_3_Shengals_Roman
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.btnClearPlaylist);
             this.panel3.Controls.Add(this.btnRemoveSong);
-            this.panel3.Controls.Add(this.btnGoToStart);
             this.panel3.Controls.Add(this.btnGoToIndex);
             this.panel3.Controls.Add(this.numericUpDownIndex);
             this.panel3.Controls.Add(this.btnPrevious);
@@ -258,7 +263,9 @@ namespace zd2_3_Shengals_Roman
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.playlistListBox);
-            this.panel3.Location = new System.Drawing.Point(561, 12);
+            this.panel3.Controls.Add(this.btnSavePlaylist);
+            this.panel3.Controls.Add(this.btnLoadPlaylist);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(525, 442);
             this.panel3.TabIndex = 11;
@@ -294,23 +301,13 @@ namespace zd2_3_Shengals_Roman
             // 
             // btnRemoveSong
             // 
-            this.btnRemoveSong.Location = new System.Drawing.Point(350, 325);
+            this.btnRemoveSong.Location = new System.Drawing.Point(350, 296);
             this.btnRemoveSong.Name = "btnRemoveSong";
             this.btnRemoveSong.Size = new System.Drawing.Size(150, 23);
             this.btnRemoveSong.TabIndex = 21;
             this.btnRemoveSong.Text = "Удалить выбранную";
             this.btnRemoveSong.UseVisualStyleBackColor = true;
             this.btnRemoveSong.Click += new System.EventHandler(this.btnRemoveSong_Click);
-            // 
-            // btnGoToStart
-            // 
-            this.btnGoToStart.Location = new System.Drawing.Point(350, 296);
-            this.btnGoToStart.Name = "btnGoToStart";
-            this.btnGoToStart.Size = new System.Drawing.Size(150, 23);
-            this.btnGoToStart.TabIndex = 20;
-            this.btnGoToStart.Text = "В начало";
-            this.btnGoToStart.UseVisualStyleBackColor = true;
-            this.btnGoToStart.Click += new System.EventHandler(this.btnGoToStart_Click);
             // 
             // btnGoToIndex
             // 
@@ -415,12 +412,29 @@ namespace zd2_3_Shengals_Roman
             this.playlistListBox.Size = new System.Drawing.Size(300, 394);
             this.playlistListBox.TabIndex = 0;
             // 
+            // btnSavePlaylist
+            // 
+            this.btnSavePlaylist.Location = new System.Drawing.Point(350, 325);
+            this.btnSavePlaylist.Name = "btnSavePlaylist";
+            this.btnSavePlaylist.Size = new System.Drawing.Size(150, 23);
+            this.btnSavePlaylist.TabIndex = 25;
+            this.btnSavePlaylist.Text = "Сохранить плейлист";
+            this.btnSavePlaylist.Click += new System.EventHandler(this.btnSavePlaylist_Click);
+            // 
+            // btnLoadPlaylist
+            // 
+            this.btnLoadPlaylist.Location = new System.Drawing.Point(350, 383);
+            this.btnLoadPlaylist.Name = "btnLoadPlaylist";
+            this.btnLoadPlaylist.Size = new System.Drawing.Size(150, 23);
+            this.btnLoadPlaylist.TabIndex = 26;
+            this.btnLoadPlaylist.Text = "Загрузить плейлист";
+            this.btnLoadPlaylist.Click += new System.EventHandler(this.btnLoadPlaylist_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1142, 465);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(547, 475);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Управление магазином и плейлист";
@@ -436,7 +450,8 @@ namespace zd2_3_Shengals_Roman
         }
 
         #endregion
-
+        private Button btnSavePlaylist;
+        private Button btnLoadPlaylist;
         private System.Windows.Forms.ListBox productsListBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem Quest2ToolStripMenuItem;
@@ -467,7 +482,6 @@ namespace zd2_3_Shengals_Roman
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.NumericUpDown numericUpDownIndex;
         private System.Windows.Forms.Button btnGoToIndex;
-        private System.Windows.Forms.Button btnGoToStart;
         private System.Windows.Forms.Button btnRemoveSong;
         private System.Windows.Forms.Button btnClearPlaylist;
         private System.Windows.Forms.Label lblCurrentSong;

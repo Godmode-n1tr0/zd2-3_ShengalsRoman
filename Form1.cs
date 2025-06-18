@@ -22,11 +22,11 @@ namespace zd2_3_Shengals_Roman
             InitializeShop();
             panel1.Visible = true;
             panel3.Visible = false;
-            LoadPlaylistsFromFile("playlist.txt");
             UpdateProductsList();
             UpdatePlaylistDisplay();
         }
 
+        // Инициализация начальных данных магазина
         private void InitializeShop()
         {
             try
@@ -41,7 +41,8 @@ namespace zd2_3_Shengals_Roman
                 MessageBox.Show($"Ошибка инициализации: {ex.Message}");
             }
         }
-        // Обновление списка товаров
+
+        // Обновление списка товаров в интерфейсе
         private void UpdateProductsList()
         {
             productsListBox.Items.Clear();
@@ -51,21 +52,24 @@ namespace zd2_3_Shengals_Roman
             }
             profitLabel.Text = $"Прибыль: {shop.Profit} руб.";
         }
-        // Показ 2 задания
+
+        // Переключение на вкладку магазина
         private void Quest2ToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             panel1.Visible = true;
             panel3.Visible = false;
             UpdateProductsList();
         }
-        // Показ 3 задания
+
+        // Переключение на вкладку плейлиста
         private void Quest3ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel3.Visible = true;
             panel1.Visible = false;
             UpdatePlaylistDisplay();
         }
-        // Обработчик кнопки "Продать выбранные"
+
+        // Продажа нескольких товаров
         private void BtnSellMultiple_Click(object sender, EventArgs e)
         {
             try
@@ -107,7 +111,8 @@ namespace zd2_3_Shengals_Roman
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        // Обработчик кнопки "Добавить"
+
+        // Добавление нового товара в магазин
         private void AddButton_Click_1(object sender, EventArgs e)
         {
             try
@@ -134,7 +139,8 @@ namespace zd2_3_Shengals_Roman
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        // Кнопка продажи одиночная
+
+        // Продажа одного товара
         private void SellButton_Click_1(object sender, EventArgs e)
         {
             if (productsListBox.SelectedIndex == -1)
@@ -157,66 +163,29 @@ namespace zd2_3_Shengals_Roman
             }
         }
 
-
-
-
-        //Загрузка файла
-        private void LoadPlaylistsFromFile(string filePath)
-        {
-            try
-            {
-                string currentPlaylist = "";
-                foreach (string line in File.ReadAllLines(filePath))
-                {
-                    if (line.StartsWith("#"))
-                    {
-                        currentPlaylist = line.Substring(2);
-                        continue;
-                    }
-
-                    if (!string.IsNullOrEmpty(line) && !string.IsNullOrEmpty(currentPlaylist))
-                    {
-                        string[] parts = line.Split('|');
-                        if (parts.Length >= 4)
-                        {
-                            string[] artistTitle = parts[0].Split('-');
-                            if (artistTitle.Length == 2)
-                            {
-                                playlist.AddSong(
-                                    artistTitle[0].Trim(),
-                                    artistTitle[1].Trim(),
-                                    parts[3].Trim());
-                            }
-                        }
-                    }
-                }
-                UpdatePlaylistDisplay();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка загрузки плейлистов: {ex.Message}");
-            }
-        }
-        // Обновление плэйлиста
+        // Обновление отображения плейлиста
         private void UpdatePlaylistDisplay()
         {
             playlistListBox.Items.Clear();
-            foreach (var song in playlist.GetAllSongs())
+            var songs = playlist.GetAllSongs();
+
+            foreach (var song in songs)
             {
-                playlistListBox.Items.Add(song);
+                playlistListBox.Items.Add($"{song.Author} - {song.Title}");
             }
 
             try
             {
-                lblCurrentSong.Text = playlist.CurrentSong().ToString();
+                var current = playlist.CurrentSong();
+                lblCurrentSong.Text = $"Сейчас играет: {current.Author} - {current.Title}";
             }
-            catch (IndexOutOfRangeException)
+            catch
             {
                 lblCurrentSong.Text = "Плейлист пуст";
             }
         }
 
-        // Добавление песни
+        // Добавление новой песни в плейлист
         private void btnAddSong_Click(object sender, EventArgs e)
         {
             try
@@ -247,7 +216,7 @@ namespace zd2_3_Shengals_Roman
             UpdatePlaylistDisplay();
         }
 
-        // Переход по индексу
+        // Переход к песне по указанному индексу
         private void btnGoToIndex_Click(object sender, EventArgs e)
         {
             try
@@ -261,20 +230,30 @@ namespace zd2_3_Shengals_Roman
             }
         }
 
-        // Переход к началу плейлиста
-        private void btnGoToStart_Click(object sender, EventArgs e)
-        {
-            playlist.GoToStart();
-            UpdatePlaylistDisplay();
-        }
-
         // Удаление выбранной песни
         private void btnRemoveSong_Click(object sender, EventArgs e)
         {
             if (playlistListBox.SelectedIndex >= 0)
             {
-                playlist.RemoveSong(playlistListBox.SelectedIndex);
-                UpdatePlaylistDisplay();
+                try
+                {
+                    playlist.RemoveSong(playlistListBox.SelectedIndex);
+
+                    // Сохранение изменений в текущий файл
+                    if (!string.IsNullOrEmpty(playlist.CurrentFilePath))
+                    {
+                        playlist.SaveChanges();
+                    }
+
+                    UpdatePlaylistDisplay();
+                    MessageBox.Show("Песня удалена из плейлиста" +
+                                    (!string.IsNullOrEmpty(playlist.CurrentFilePath) ? " и файла" : "", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при удалении: {ex.Message}", "Ошибка",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -285,5 +264,51 @@ namespace zd2_3_Shengals_Roman
             UpdatePlaylistDisplay();
         }
 
+        // Сохранение плейлиста в файл
+        private void btnSavePlaylist_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            saveDialog.Title = "Сохранить плейлист";
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    playlist.SaveToFile(saveDialog.FileName);
+                    MessageBox.Show("Плейлист успешно сохранен", "Успех",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Загрузка плейлиста из файла
+        private void btnLoadPlaylist_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            openDialog.Title = "Загрузить плейлист";
+
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    playlist.LoadFromFile(openDialog.FileName);
+                    UpdatePlaylistDisplay();
+                    MessageBox.Show("Плейлист успешно загружен", "Успех",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при загрузке: {ex.Message}", "Ошибка",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
