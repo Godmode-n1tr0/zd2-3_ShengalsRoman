@@ -1,0 +1,7 @@
+Queen|Bohemian Rhapsody|C:\Music\queen_bohemian.mp3
+The Beatles|Hey Jude|C:\Music\beatles_heyjude.mp3
+Led Zeppelin|Stairway to Heaven|C:\Music\zeppelin_stairway.mp3
+Nirvana|Smells Like Teen Spirit|C:\Music\nirvana_slts.mp3
+Michael Jackson|Billie Jean|C:\Music\mj_billiejean.mp3
+AC/DC|Highway to Hell|C:\Music\acdc_highway.mp3
+Pink Floyd|Comfortably Numb|C:\Music\pf_numb.mp3

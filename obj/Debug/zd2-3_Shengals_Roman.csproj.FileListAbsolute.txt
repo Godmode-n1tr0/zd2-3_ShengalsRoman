@@ -1,0 +1,10 @@
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\bin\Debug\zd2-3_Shengals_Roman.exe.config
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\bin\Debug\zd2-3_Shengals_Roman.exe
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\bin\Debug\zd2-3_Shengals_Roman.pdb
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\obj\Debug\zd2_3_Shengals_Roman.Form1.resources
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\obj\Debug\zd2_3_Shengals_Roman.Properties.Resources.resources
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\obj\Debug\zd2-3_Shengals_Roman.csproj.GenerateResource.cache
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\obj\Debug\zd2-3_Shengals_Roman.csproj.CoreCompileInputs.cache
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\obj\Debug\zd2-3_Shengals_Roman.exe
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\obj\Debug\zd2-3_Shengals_Roman.pdb
+C:\Users\305-3\Desktop\Шенгальс_Пр-24\zd2-3_Shengals_Roman\obj\Debug\zd2-3_Shengals_Roman.csproj.AssemblyReference.cache
